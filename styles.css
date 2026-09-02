@@ -1,0 +1,46 @@
+/* Simple premium-style CSS (Tailwind-like spacing) */
+:root{
+  --accent:#b71c1c;
+  --muted:#6b7280;
+  --bg:#fff;
+  --card:#ffffff;
+}
+*{box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;margin:0;background:#fafafa;color:#111}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.site-header{background:#fff;border-bottom:1px solid #eee}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+.brand{font-weight:700;color:var(--accent);font-size:20px}
+.nav a{margin-left:16px;color:#333;text-decoration:none}
+.hero{background:#fff;padding:40px 0}
+.hero-inner{display:flex;gap:24px;align-items:center}
+.hero h1{font-size:28px;margin:0}
+.lead{color:var(--muted);margin-top:8px}
+.cta-row{margin-top:16px}
+.btn{display:inline-block;padding:10px 18px;border-radius:8px;text-decoration:none}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.outline{border:1px solid var(--accent);color:var(--accent)}
+.hero-image img{width:420px;max-width:100%;border-radius:12px}
+.facilities{padding:40px 0}
+.facilities h2{margin:0 0 8px 0}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
+.card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+.inventory{padding:40px 0}
+.inventory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.vehicle-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+.vehicle-card img{width:100%;height:180px;object-fit:cover}
+.card-body{padding:12px}
+.card-body h3{margin:0 0 6px 0}
+.meta{color:var(--muted);font-size:13px}
+.price{color:var(--accent);font-weight:700;margin-top:8px}
+.badge{display:inline-block;background:#f3f4f6;padding:6px 8px;border-radius:999px;font-size:12px;margin-right:6px}
+.actions{margin-top:12px}
+.btn.small{padding:8px 12px;border-radius:8px;font-size:13px;margin-right:8px}
+.btn.whatsapp{background:#25D366;color:#fff}
+.floating-ctas{position:fixed;right:20px;bottom:20px;display:flex;flex-direction:column;gap:10px}
+.fab{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:#fff;text-decoration:none;font-weight:600}
+.fab.whatsapp{background:#25D366}
+.fab.instagram{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.site-footer{padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid #eee;margin-top:40px}
+.map-link{color:var(--accent)}
+@media (max-width:800px){.hero-inner{flex-direction:column}.hero-image img{width:100%}}

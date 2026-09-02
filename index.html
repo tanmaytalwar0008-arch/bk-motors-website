@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BK.MOTORS — Trusted Pre‑Owned Two‑Wheelers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">BK.MOTORS</div>
+      <nav class="nav">
+        <a href="#inventory">Inventory</a>
+        <a href="#facilities">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h1>Trusted Pre‑Owned Two‑Wheeler Showroom — Quality Assured, Finance Available</h1>
+          <p class="lead">Carefully inspected | Buyback & Exchange | Instant RC Transfer</p>
+          <div class="cta-row">
+            <a href="#inventory" class="btn primary">View Inventory</a>
+            <a href="#contact" class="btn outline">Book Test Ride</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <!-- placeholder image -->
+          <img src="/images/hero-placeholder.jpg" alt="Showroom"/>
+        </div>
+      </div>
+    </section>
+
+    <section id="facilities" class="container facilities">
+      <h2>Our Premium Services</h2>
+      <p class="muted">Designed to make buying your next two‑wheeler effortless and secure.</p>
+      <div class="grid services-grid">
+        <div class="card"><h3>Complimentary First Two Services</h3><p>Enjoy two free scheduled services to keep your bike in peak condition.</p></div>
+        <div class="card"><h3>Buy‑Back Facility</h3><p>Sell back to us anytime at a competitive market price — hassle free.</p></div>
+        <div class="card"><h3>Exchange Facility</h3><p>Exchange your existing bike and upgrade with transparent valuation.</p></div>
+        <div class="card"><h3>Loan & Finance Options</h3><p>On‑spot approvals and flexible EMI plans with trusted lenders.</p></div>
+        <div class="card"><h3>Instant Ownership Transfer</h3><p>Complete RC and ownership transfer at the time of purchase.</p></div>
+        <div class="card"><h3>Comprehensive Pre‑Delivery Check</h3><p>Full mechanical and safety inspection prior to handover.</p></div>
+        <div class="card"><h3>Lease Options from ₹16/day</h3><p>Short-term lease plans available — terms & conditions apply.</p></div>
+      </div>
+    </section>
+
+    <section id="inventory" class="container inventory">
+      <h2>Available Vehicles</h2>
+      <div id="inventory-grid" class="grid inventory-grid">
+        <!-- JS will load cards here -->
+      </div>
+    </section>
+
+    <section id="contact" class="container contact">
+      <h2>Contact & Location</h2>
+      <p><strong>BK.MOTORS</strong> — 82 Chakrata Road, Dehradun, Uttarakhand</p>
+      <p>Working hours: 11:00 – 20:00</p>
+      <p>WhatsApp: <a href="https://wa.me/918126525454" target="_blank">+91 81265 25454</a></p>
+      <p>Follow our official Instagram account for the latest collection: <a href="https://www.instagram.com/bkmotorsdehradoon" target="_blank">@bkmotorsdehradoon</a></p>
+      <p><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=82+Chakrata+Road+Dehradun+Uttarakhand" target="_blank">View on Google Maps</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© BK.MOTORS — Follow us on Instagram: <a href="https://www.instagram.com/bkmotorsdehradoon" target="_blank">@bkmotorsdehradoon</a></div>
+  </footer>
+
+  <!-- Floating CTAs -->
+  <div class="floating-ctas">
+    <a href="https://wa.me/918126525454" target="_blank" class="fab whatsapp" aria-label="WhatsApp">WA</a>
+    <a href="https://www.instagram.com/bkmotorsdehradoon" target="_blank" class="fab instagram" aria-label="Instagram">IG</a>
+  </div>
+
+  <script>
+    // Load inventory and render cards
+    fetch('/vehicles.json')
+      .then(r => r.json())
+      .then(data => {
+        const grid = document.getElementById('inventory-grid');
+        data.forEach(v => {
+          const card = document.createElement('div');
+          card.className = 'vehicle-card';
+          const imgSrc = v.images && v.images.length ? v.images[0] : '/images/placeholder-vehicle.jpg';
+          card.innerHTML = `
+            <img src="/images/${imgSrc}" alt="${v.title}" />
+            <div class="card-body">
+              <h3>${v.title} ${v.year ? '— ' + v.year : ''}</h3>
+              <p class="meta">${v.color} • ${v.kms ? v.kms + ' km' : ''} • ${v.condition}</p>
+              <div class="price">${v.price_display || 'Contact'}</div>
+              <div class="badges">${v.status ? '<span class="badge">'+v.status+'</span>' : ''} ${v.tyres_percent ? '<span class="badge">Tyres '+v.tyres_percent+'%</span>' : ''}</div>
+              <div class="actions">
+                <a href="/vehicle.html?id=${v.id}" class="btn small">View Details</a>
+                <a href="https://wa.me/918126525454?text=Hi%20BK.MOTORS%2C%20I%27m%20interested%20in%20${encodeURIComponent(v.id+' '+v.title)}" class="btn small whatsapp">Contact</a>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      })
+      .catch(err => console.error('Failed to load vehicles', err));
+  </script>
+
+</body>
+</html>
